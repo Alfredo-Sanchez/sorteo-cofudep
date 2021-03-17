@@ -5,7 +5,8 @@ const router = Router();
 const controller = require('../controllers/index.controller')
 
 router.get('/',controller.index)
-router.get('/ganador/:id', controller.ganador )
+router.put('/winner/:id', controller.updateWinner)
+router.get('/winners/:id', controller.winners )
 
 
 module.exports = router

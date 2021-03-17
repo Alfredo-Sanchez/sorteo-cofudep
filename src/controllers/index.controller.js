@@ -1,6 +1,8 @@
 const controller = {}
+const { response } = require('express')
 const path = require('path')
 const { Pool } = require('pg')
+const { pid } = require('process')
 
 const pool = new Pool({
     host: 'localhost',
@@ -15,10 +17,37 @@ controller.index =  (req, res)=>{
     res.sendFile(path.resolve(__dirname, '../../public/index.html'))
 }
 
-controller.ganador = async (req, res) =>{
+controller.updateWinner = async (req, res)=>{
+    try {
+        const response = await pool.query("UPDATE participantes SET soc_ganador = $1, soc_gan_desc = $2 where part_orden = $3",
+        [ 'si', 'Gano...', req.params.id])
+
+        if (response.rowCount !== 0){
+            // console.log(response)
+            // res.json("competitor updated successfully")
+            const winner = await pool.query("SELECT * FROM participantes WHERE part_orden = $1", [req.params.id]);
+            res.send(winner.rows)
+            res.status(200)
+        }else{
+            res.json("competitor does not exits")
+        }
+    } catch (error) {
+        console.log(`error es : ${error}`)
+    }
+
+}
+
+controller.winners = async (req, res) =>{
     // res.send('El socio ganador es: ' + req.params.id)
-    const response = await pool.query('SELECT * FROM participantes WHERE part_orden = $1', [req.params.id])
-    res.json(response.rows)
+    try {
+        const response = await pool.query('SELECT * FROM participantes WHERE part_orden = $1', [req.params.id])
+        if (response.rows.length  !== 0) res.send(response.rows)
+        else res.json("Este participante no existe")
+    } catch (error) {
+        console.log(`error es : ${error}`)
+    }
+    
+    
 }
 
 module.exports = controller

@@ -1,9 +1,5 @@
 
 
-// (function(){
-
-    
-// }());
 
 const parar = document.getElementById('parar')
 const iniciar = document.getElementById('iniciar')
@@ -14,15 +10,8 @@ let interval;
 const actualizarNumero =  () => {
     var mili = new Date();
     var num = mili.getMilliseconds();
-    // while( num < 200){
-    //     num = num + 1; 
-    //     numeros.textContent = num;
-    //     if(num > 200){
-    //         num = 1
-    //     }
-    // }
     
-            numeros.textContent = num;
+        numeros.textContent = num;
 }
 
 // actualizarNumero()
@@ -34,10 +23,28 @@ iniciar.addEventListener('click', ()=>{
         interval = setInterval(actualizarNumero, 10)
 })
 
+const getWinner = async (winner)=>{
+        // console.log(`winner from function getWinner ${winner}`)
+
+        fetch(`http://localhost:3000/winner/${winner}`, {
+                method: 'PUT',
+                body: JSON.stringify(),
+                headers: {
+                        "Content-type": "aplication/json"
+                }
+        })
+        .then(response => response.json())
+        .then(json => console.log(json))
+}
+
 parar.addEventListener('click', ()=>{
         clearInterval(interval)
         var resp = getRandomInt(2,100)
         numeros.textContent = resp;
+        getWinner(resp);
 })
+
+
     
+
     
