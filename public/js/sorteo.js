@@ -28,8 +28,11 @@ iniciar.addEventListener('click', ()=>{
 
 const renderWinner = (win)=>{
         const data = JSON.parse(win)
+        sessionStorage.setItem('orden', data[0].part_orden)
+        sessionStorage.setItem('socio', data[0].soc_nombre)
+        sessionStorage.setItem('ganancia', data[0].soc_gan_desc)
         const newElement = document.createElement('LI')
-              newElement.textContent = `${data[0].part_orden} - ${data[0].soc_nombre}: ${data[0].soc_gan_desc}.-`
+              newElement.textContent = `${sessionStorage.getItem('orden')} - ${sessionStorage.getItem('socio')}: ${sessionStorage.getItem('ganancia')}.-`
               newElement.setAttribute('class', 'winner__items')
         winnerList.append(newElement)     
 }
