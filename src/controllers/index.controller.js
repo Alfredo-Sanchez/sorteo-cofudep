@@ -20,7 +20,7 @@ controller.index =  (req, res)=>{
 controller.updateWinner = async (req, res)=>{
     try {
         const response = await pool.query("UPDATE participantes SET soc_ganador = $1, soc_gan_desc = $2 where part_orden = $3",
-        [ 'si', 'Gano...', req.params.id])
+        [ 'si', 'Ganador de Gs. 1.000.000', req.params.id])
 
         if (response.rowCount !== 0){
             // console.log(response)

@@ -4,8 +4,10 @@
 const parar = document.getElementById('parar')
 const iniciar = document.getElementById('iniciar')
 const numeros = document.getElementById('numeros')
+const winnerList = document.getElementById('winnersList')
 let num = 1;
 let interval;
+let avaible = false;
 
 const actualizarNumero =  () => {
     var mili = new Date();
@@ -20,8 +22,17 @@ function getRandomInt(min, max) {
   }
 
 iniciar.addEventListener('click', ()=>{
-        interval = setInterval(actualizarNumero, 10)
+        interval = setInterval(actualizarNumero, 10);
+        avaible = true;
 })
+
+const renderWinner = (win)=>{
+        const data = JSON.parse(win)
+        const newElement = document.createElement('LI')
+              newElement.textContent = `${data[0].part_orden} - ${data[0].soc_nombre}: ${data[0].soc_gan_desc}.-`
+              newElement.setAttribute('class', 'winner__items')
+        winnerList.append(newElement)     
+}
 
 const getWinner = async (winner)=>{
         // console.log(`winner from function getWinner ${winner}`)
@@ -34,14 +45,20 @@ const getWinner = async (winner)=>{
                 }
         })
         .then(response => response.json())
-        .then(json => console.log(json))
+        .then((data) => {
+                console.log(data);
+                renderWinner(JSON.stringify(data));
+        })
 }
 
 parar.addEventListener('click', ()=>{
-        clearInterval(interval)
-        var resp = getRandomInt(2,100)
-        numeros.textContent = resp;
-        getWinner(resp);
+        if(avaible){
+                clearInterval(interval)
+                var resp = getRandomInt(2,100)
+                numeros.textContent = resp;
+                getWinner(resp);
+        }
+        avaible = false
 })
 
 

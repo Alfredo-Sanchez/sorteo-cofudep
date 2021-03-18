@@ -4,22 +4,32 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="shortcut icon" href="./assets/img/icon.ico" type="image/x-icon">
     <link rel="stylesheet" href="./css/style.css">
     <title>Sorteo Cofudep</title>
 </head>
 <body>
-    <div class="wrap">
-        <div class="encabezado">
-            <h1>Sorteo Cofudep</h1>
-        </div>
-        <div class="sorteo">
-            <p id="numeros">000</p>
-        </div>
-        <div class="botones">
-            <button class="button" id="iniciar">INCIAR</button>
-            <button class="button" id="parar">PARAR</button>
-        </div>
-    </div>
+    <main class="main">
+        <section class="winners">
+                <h1 class="winner__title"> Ganadores</h1>
+                <ul class="winner__list" id="winnersList">
+                    <!-- <li class="winner__items">Alfredo Daniel Sánchez: Ganador de Gs. 1.000.000.-</li>
+                    <li class="winner__items">Stuzzenegger Fuster,Laura Maria Del Mar: Ganador de Gs. 1.000.000.-</li> -->
+                </ul>
+        </section>
+        <section class="sorteo">
+            <div class="sorteo__header">
+                <h1>Sorteo Cofudep</h1>
+            </div>
+            <div class="sorteo__circle">
+                <p class="sorteo__numbers" id="numeros">000</p>
+            </div>
+            <div class="sorteo__buttons">
+                <button class="sorteo__button" id="iniciar">INICIAR</button>
+                <button class="sorteo__button" id="parar">PARAR</button>
+            </div>
+        </section>
+    </main>
 
     <script src="js/sorteo.js"></script>
 </body>
