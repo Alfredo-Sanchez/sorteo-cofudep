@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "sorteo.js",
   "scripts": {
-    "dev": "nodemon src/app.js" 
+    "dev": "nodemon src/app.js"
   },
   "author": "",
   "license": "ISC",
@@ -13,6 +13,8 @@
     "-": "0.0.1",
     "D": "^1.0.0",
     "express": "^4.17.1",
+    "mime-types": "^2.1.29",
+    "multer": "^1.4.2",
     "nodemon": "^2.0.7",
     "pg": "^8.5.1"
   }

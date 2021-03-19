@@ -4,13 +4,10 @@ const path = require('path')
 
 //middlewares
 app.use(express.json()) //es para que pueda interpretar datos enviados desde el cliente en el request.body
-app.use(express.urlencoded({extended: false})) // es para que pueda recibir datos desde un formularios desde un cliente
+app.use(express.urlencoded({extended: true})) // es para que pueda recibir datos desde un formularios desde un cliente
 
 //routes
 app.use(require('./routes/index.routers'))
-
-//views
-app.set('views', path.join(__dirname, '../public/views'))
 
 // static files
 app.use(express.static(path.join(__dirname, '../public')))
