@@ -9,10 +9,12 @@
     <title>Excel - sorteo </title>
 </head>
 <body>
-    <h1 class="header__title">Suba un archivo con la extension .csv</h1>
-    <form class="form" action="/uploadfile" method="post" enctype="multipart/form-data">
-        <input type="file" name="fileupload" accept=".csv" id="uploadFile">
-        <input type="submit" value="Enviar">
-    </form>
+    <main class="main">
+        <h1 class="main__title">Suba un archivo con la extension .csv</h1>
+        <form class="form" action="/uploadfile" method="post" enctype="multipart/form-data">
+            <input type="file" name="fileupload" accept=".csv" id="uploadFile">
+            <input class="form__submit" type="submit" value="Enviar">
+        </form>
+    </main>
 </body>
 </html>
