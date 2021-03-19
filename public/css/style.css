@@ -177,3 +177,60 @@ button {
       transform: translate3d(0, 0, -1em);
     }
 }
+
+.modal{
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0 , 0.7);
+  transform: scale(0);
+  transition: transform .3s;
+
+  display: flex;
+  flex-direction: center;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal.modal--show{
+  transform: scale(1);
+}
+
+.modal__container{
+  border-radius: 20px;
+  border: 2px solid red;
+  background: radial-gradient(circle, #1a2049 0%, #13162f 100%);
+  width: 400px;
+  height: 250px;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.modal__header{
+  position: relative;
+  font-size: 1.5em;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.modal__text{
+  color: #fff;
+  font-size: 1.2em;
+}
+
+.modal__submit{
+  cursor: pointer;
+  outline: none;
+  color: #fff;
+  /* text-transform: uppercase; */
+  padding: 0.25em 1.5em;
+  background: #4255d4;
+  border: 2px solid royalblue;
+  border-radius: 0.75em;
+}
