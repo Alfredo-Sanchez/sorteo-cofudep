@@ -17,7 +17,7 @@ controller.index =  (req, res)=>{
     res.sendFile(path.resolve(__dirname, '../../public/index.html'))
 }
 
-controller.participants = async (req, res)=> {
+controller.getParticipants = async (req, res)=> {
     try {
        const response = await pool.query('SELECT COUNT(part_orden) FROM participantes');
        res.send(response.rows[0].count)
@@ -53,22 +53,21 @@ controller.updateWinner = async (req, res)=>{
     } catch (error) {
         console.log(`error es: ${error}`)
     }
-
-   
-
 }
 
-controller.winners = async (req, res) =>{
+controller.getWinners = async (req, res) =>{
     // res.send('El socio ganador es: ' + req.params.id)
     try {
-        const response = await pool.query('SELECT * FROM participantes WHERE part_orden = $1', [req.params.id])
+        const response = await pool.query('SELECT * FROM participantes WHERE soc_ganador = $1', ['si'])
         if (response.rows.length  !== 0) res.send(response.rows)
-        else res.json("Este participante no existe")
+        else res.json({"message": "Aún no hay ganadores"})
     } catch (error) {
         console.log(`error es : ${error}`)
     }
-    
-    
+}
+
+controller.winners = (req, res)=>{
+    res.sendFile(path.resolve(__dirname, '../../public/ganadores.html'))
 }
 
 module.exports = controller

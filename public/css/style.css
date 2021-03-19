@@ -63,7 +63,7 @@ body{
   .winners,
   .sorteo{
     min-width: 360px;
-    height: 500px;
+    min-height: 500px;
     padding-top: 15px;
   }
 
