@@ -10,7 +10,7 @@ const { measureMemory } = require('vm')
 const pool = new Pool({
     host: 'localhost',
     user: 'postgres',
-    password: '1234',
+    password: '123',
     database: 'sorteos',
     port: '5432'
 })
@@ -25,9 +25,14 @@ controller.file = (req, res)=>{
 }
 
 controller.uploadFile = async (req, res)=>{
-    await pool.query("DELETE FROM participantes");
-    await pool.query("copy public.participantes (part_orden, soc_nro, soc_nombre, soc_ganador, soc_gan_desc) FROM 'C:/Users/DELL/Documents/ejercicios_programacion/sorteo-cofudep/uploads/sorteo.csv' DELIMITER ';' CSV HEADER ENCODING 'LATIN1'");
-    res.json({"message": "Lista de participantes creada en la bases de datos."})
+    try {
+        await pool.query("DELETE FROM participantes");
+        await pool.query(`copy public.participantes (part_orden, soc_nro, soc_nombre, soc_ganador, soc_gan_desc) FROM '${path.join(__dirname, '../../uploads/sorteo.csv')}' DELIMITER ';' CSV HEADER ENCODING 'LATIN1'`);
+        res.json({"message": "Lista de participantes creada en la bases de datos."})
+    } catch (error) {
+        console.log(`el error es : ${error}`)
+    }
+
 }
 
 controller.getParticipants = async (req, res)=> {

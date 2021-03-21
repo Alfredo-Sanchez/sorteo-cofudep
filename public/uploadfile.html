@@ -6,15 +6,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="./css/upload.css">
     <link rel="shortcut icon" href="./assets/img/icon.ico" type="image/x-icon">
+    <script src="https://kit.fontawesome.com/cc02037942.js" crossorigin="anonymous"></script>
     <title>Excel - sorteo </title>
 </head>
 <body>
     <main class="main">
         <h1 class="main__title">Suba un archivo con la extension .csv</h1>
-        <form class="form" action="/uploadfile" method="post" enctype="multipart/form-data">
-            <input type="file" name="fileupload" accept=".csv" id="uploadFile">
-            <input class="form__submit" type="submit" value="Enviar">
-        </form>
+        
+        <section class="upload-drag-and-drop">
+            <form class="form" action="/uploadfile" method="post" enctype="multipart/form-data">
+                <input type="file" name="fileupload" id="fileupload" accept=".csv" class="hide">
+                <div id="drop-zone" class="drop-zone">
+                    <i class="fas fa-file-upload drop-zone__icon"></i>
+                    <p class="drop-zone__text">
+                        Arrastre o haga click para alzar el archivo
+                    </p>
+                </div>
+                <input class="form__submit" type="submit" id="upload-button" value="Enviar">
+            </form>
+        </section>
+
     </main>
+    <script src="js/upload.js"></script>
 </body>
 </html>
