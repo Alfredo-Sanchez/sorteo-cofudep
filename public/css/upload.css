@@ -89,3 +89,23 @@ body{
     border: 2px solid royalblue;
     border-radius: 0.75em;
 }
+
+.popup{
+    /* border: 1px solid red; */
+    width: 400px;
+    background-color: royalblue;
+    border-radius: 0.75em;
+    position: absolute;
+    top: 20px;
+    right: -100%;
+    transform: translateX(0);
+    border: 2px solid #4255d4;
+
+    box-shadow: 2px 5px 8px #000;
+}
+
+.popup--show{
+    transition: transform 3s;
+    right: 0;
+    transform: translateX(-50%);
+}

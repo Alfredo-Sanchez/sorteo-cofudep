@@ -74,7 +74,7 @@ const getWinner = (winner)=>{
                 method: 'PUT',
                 body: JSON.stringify(),
                 headers: {
-                        "Content-type": "aplication/json"
+                        "Content-type": "application/json"
                 }
         })
         .then(response => response.json())
