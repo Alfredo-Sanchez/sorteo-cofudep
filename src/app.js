@@ -8,6 +8,8 @@ app.use(express.urlencoded({extended: true})) // es para que pueda recibir datos
 
 //routes
 app.use(require('./routes/index.routers'))
+app.use(require('./routes/winners.routers'))
+app.use(require('./routes/uploadfile.routers'))
 
 // static files
 app.use(express.static(path.join(__dirname, '../public')))

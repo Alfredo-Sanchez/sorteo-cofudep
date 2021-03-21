@@ -1,38 +1,12 @@
 const controller = {}
-const { response } = require('express')
 const path = require('path')
-const { Pool } = require('pg')
-const { pid } = require('process')
-const { pathToFileURL } = require('url')
-const { measureMemory } = require('vm')
 
-
-const pool = new Pool({
-    host: 'localhost',
-    user: 'postgres',
-    password: '123',
-    database: 'sorteos',
-    port: '5432'
-})
+// DATABASE CONECTION
+const pool = require('./database')
 
 controller.index =  (req, res)=>{
     // res.send('la conexion ha sido sastifactoria desde controllers')
     res.sendFile(path.resolve(__dirname, '../../public/index.html'))
-}
-
-controller.file = (req, res)=>{
-    res.sendFile(path.resolve(__dirname, '../../public/uploadfile.html'))
-}
-
-controller.uploadFile = async (req, res)=>{
-    try {
-        await pool.query("DELETE FROM participantes");
-        await pool.query(`copy public.participantes (part_orden, soc_nro, soc_nombre, soc_ganador, soc_gan_desc) FROM '${path.join(__dirname, '../../uploads/sorteo.csv')}' DELIMITER ';' CSV HEADER ENCODING 'LATIN1'`);
-        res.json({"message": "Lista de participantes creada en la bases de datos."})
-    } catch (error) {
-        console.log(`el error es : ${error}`)
-    }
-
 }
 
 controller.getParticipants = async (req, res)=> {
@@ -71,21 +45,6 @@ controller.updateWinner = async (req, res)=>{
     } catch (error) {
         console.log(`error es: ${error}`)
     }
-}
-
-controller.getWinners = async (req, res) =>{
-    // res.send('El socio ganador es: ' + req.params.id)
-    try {
-        const response = await pool.query('SELECT * FROM participantes WHERE soc_ganador = $1', ['si'])
-        if (response.rows.length  !== 0) res.send(response.rows)
-        else res.json({"message": "Aún no hay ganadores"})
-    } catch (error) {
-        console.log(`error es : ${error}`)
-    }
-}
-
-controller.winners = (req, res)=>{
-    res.sendFile(path.resolve(__dirname, '../../public/ganadores.html'))
 }
 
 module.exports = controller
