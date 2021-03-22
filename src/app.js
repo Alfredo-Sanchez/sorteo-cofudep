@@ -10,6 +10,7 @@ app.use(express.urlencoded({extended: true})) // es para que pueda recibir datos
 app.use(require('./routes/index.routers'))
 app.use(require('./routes/winners.routers'))
 app.use(require('./routes/uploadfile.routers'))
+app.use(require('./routes/exportExcel.routers'))
 
 // static files
 app.use(express.static(path.join(__dirname, '../public')))
