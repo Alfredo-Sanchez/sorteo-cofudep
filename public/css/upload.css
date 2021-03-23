@@ -135,12 +135,12 @@ body{
 
 .popup{
     /* border: 1px solid red; */
-    width: 400px;
+    width: 50vw;
     background-color: royalblue;
     border-radius: 0.75em;
     position: absolute;
     top: 20px;
-    right: -100%;
+    right: -110%;
     transform: translateX(0);
     border: 2px solid #4255d4;
 

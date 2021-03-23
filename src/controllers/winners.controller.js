@@ -11,7 +11,7 @@ controller.winners = (req, res)=>{
 controller.getWinners = async (req, res) =>{
     // res.send('El socio ganador es: ' + req.params.id)
     try {
-        const response = await pool.query('SELECT * FROM participantes WHERE soc_ganador = $1', ['si'])
+        const response = await pool.query('SELECT * FROM v_participantes')
         if (response.rows.length  !== 0) res.send(response.rows)
         else res.json({"message": "Aún no hay ganadores"})
     } catch (error) {

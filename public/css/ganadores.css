@@ -75,7 +75,7 @@ body{
 }
 
 .main__nav{
-    width: 100%;
+    width: 70%;
     min-height: 600px;
     height: 100%;
     background: radial-gradient(circle, #1a2049 0%, #13162f 100%);
@@ -84,6 +84,10 @@ body{
     padding-top: 20px;
     border: 1px solid royalblue;
     line-height: 1.5em;
+}
+
+.excel-exports{
+    border: 1px solid royalblue;
 }
 
 @media screen and (min-width: 768px){

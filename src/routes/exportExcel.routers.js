@@ -14,7 +14,7 @@ router.get('/excelWinners', async (req, res)=>{
 
     let winners;
     try {
-        const response = await pool.query('SELECT * FROM participantes WHERE soc_ganador = $1', ['si'])
+        const response = await pool.query('SELECT * FROM v_participantes')
         if (response.rows.length  !== 0){
             winners = [...response.rows];
             const workSheetColumnNames = [
