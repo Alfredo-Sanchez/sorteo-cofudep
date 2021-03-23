@@ -13,9 +13,9 @@ const exportExcel = (data, workSheetColumnNames, workSheetName, filePath) =>{
     xlsx.writeFile(workBook, path.resolve(filePath));
 }
 
-const exportUsersToExcel = (users, workSheetColumnNames, workSheetName, filePath)=>{
-    const data = users.map(user =>{
-        return [user.id, user.name, user.age];
+const exportUsersToExcel = (winners, workSheetColumnNames, workSheetName, filePath)=>{
+    const data = winners.map(winner =>{
+        return [winner.part_orden, winner.soc_nro, winner.soc_nombre, winner.soc_ganador, winner.soc_gan_desc];
     });
 
     exportExcel(data, workSheetColumnNames, workSheetName, filePath)

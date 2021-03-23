@@ -10,9 +10,17 @@
     <title>Excel - sorteo </title>
 </head>
 <body>
+    <header class="header">
+        <nav class="menu-nav">
+            <ul class="navbar">
+                <li class="navbar__item"><a class="navbar__link" href="/">Inicio</a></li>
+                <li class="navbar__item"><a class="navbar__link" href="/winners">Ganadores</a></li>
+                <li class="navbar__item"><a class="navbar__link" href="/file">Participantes</a></li>
+            </ul>
+        </nav>
+    </header>
     <main class="main">
-        <h1 class="main__title">Suba un archivo con la extension .csv</h1>
-        
+        <h1 class="main__title">Suba un archivo con la extension .csv</h1> 
         <section class="upload-drag-and-drop">
             <form class="form" id="form"enctype="multipart/form-data">
                 <input type="file" name="fileupload" id="fileupload" accept=".csv" class="hide">

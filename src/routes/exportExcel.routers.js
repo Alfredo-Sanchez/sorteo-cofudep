@@ -3,44 +3,45 @@ const { Router } = require('express');
 const router = Router();
 const path  = require('path')
 
+//DATABASE CONECTION
+const pool = require('../controllers/database')
+
 //CONTROLLERS
 const exportUsersToExcel = require('../controllers/exportExcel.controllers');
 
 //ROUTES
-router.get('/excelWinners', (req, res)=>{
-    const users = [
-        {
-            id: 1,
-            name: 'Peter',
-            age: 25
-        },
-        {
-            id: 2,
-            name: 'Juan',
-            age: 27
-        },
-        {
-            id: 1,
-            name: 'Alfredo',
-            age: 22
-        }
-    
-    ];
-    
-    const workSheetColumnNames = [
-        'ID',
-        'Name',
-        'Age'
-    ];
-    
-    const workSheetName = 'users';
-    const filePath = path.join(__dirname, '../../ouputFiles/excel-from-js.xlsx');
-    
-    exportUsersToExcel(users,workSheetColumnNames, workSheetName, filePath )
+router.get('/excelWinners', async (req, res)=>{
 
-    res.send({
-        message: 'Excel exported'
-    })
+    let winners;
+    try {
+        const response = await pool.query('SELECT * FROM participantes WHERE soc_ganador = $1', ['si'])
+        if (response.rows.length  !== 0){
+            winners = [...response.rows];
+            const workSheetColumnNames = [
+                'Orden',
+                'Socio numero',
+                'Nmbre y Apellido',
+                'Ganador',
+                'Descripcion'
+            ];
+            
+            const workSheetName = 'Ganadores';
+            const filePath = path.join(__dirname, '../../ouputFiles/excel-from-js.xlsx');
+            
+            exportUsersToExcel(winners,workSheetColumnNames, workSheetName, filePath );
+        
+            res.send({ message: 'Excel exported' })
+
+            // res.json({"message": "Excel realizado correctamente"})
+  
+        } 
+        else res.json({"message": "Aún no hay ganadores"})
+    } catch (error) {
+        console.log(`error es : ${error}`)
+    }
+    
+    
+
 })
 
 module.exports = router
