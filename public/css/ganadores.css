@@ -75,7 +75,7 @@ body{
 }
 
 .main__nav{
-    width: 70%;
+    width: 100%;
     min-height: 600px;
     height: 100%;
     background: radial-gradient(circle, #1a2049 0%, #13162f 100%);
@@ -84,10 +84,23 @@ body{
     padding-top: 20px;
     border: 1px solid royalblue;
     line-height: 1.5em;
+    margin-top: 5px;
 }
 
 .excel-exports{
-    border: 1px solid royalblue;
+    margin-bottom: 0;
+    padding-left: 10px;
+    display: flex;
+    justify-content: flex-start;
+}
+
+.excel-exports__submit{
+    border: none;
+    outline: none;
+    padding: 0.80em 1.5em;
+    background-color: green;
+    color: #fff;
+    
 }
 
 @media screen and (min-width: 768px){
@@ -100,6 +113,11 @@ body{
     .main__nav{
         min-height: 500px;
         font-size: 1.2em;
+    }
+
+    .excel-exports__submit:hover{
+        background-color: rgb(48, 148, 48);
+        cursor: pointer;
     }
 
 
