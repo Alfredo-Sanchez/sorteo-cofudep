@@ -1,5 +1,6 @@
 
 const navList = document.getElementById('navList')
+const excelExport = document.getElementById('excel-export')
 
 
 fetch('http://localhost:3000/getwinners')
@@ -26,3 +27,10 @@ fetch('http://localhost:3000/getwinners')
 })
 
 
+excelExport.addEventListener('click', ()=>{
+    fetch('http://localhost:3000/excelWinners')
+    .then(res => res.ok ?  res.json() : `error`)
+    .then(data =>{
+        console.log(data)
+    })
+})

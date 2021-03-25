@@ -17,6 +17,7 @@ app.use(express.static(path.join(__dirname, '../public')))
 
 // defaul page for anywhere address
 app.use((req, res)=>{
+    res.status(404)
     res.sendFile(path.join(__dirname, '../public/404.html'))
 })
 
