@@ -39,7 +39,7 @@ function getRandomInt(min, max) {
   }
 
 iniciar.addEventListener('click', async ()=>{
-        await fetch('http://localhost:3000/participants')
+        await fetch('http://localhost:4000/participants')
          .then(response => response.json())
          .then((participant) =>{
                  participants = participant
@@ -70,7 +70,7 @@ const renderWinner = (win)=>{
 const getWinner = (winner)=>{
         // console.log(`winner from function getWinner ${winner}`)
 
-        fetch(`http://localhost:3000/winner/${winner}`, {
+        fetch(`http://localhost:4000/winner/${winner}`, {
                 method: 'PUT',
                 body: JSON.stringify(),
                 headers: {

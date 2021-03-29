@@ -21,7 +21,7 @@ app.use((req, res)=>{
     res.sendFile(path.join(__dirname, '../public/404.html'))
 })
 
-app.listen(3000);
-console.log('Server on port 3000')
+app.listen(4000);
+console.log('Server on port 4000')
 
 // se ejecuta con el comando " npm run dev"

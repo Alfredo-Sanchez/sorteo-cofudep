@@ -30,12 +30,9 @@ router.get('/excelWinners', async (req, res)=>{
             
             exportUsersToExcel(winners,workSheetColumnNames, workSheetName, filePath );
         
-            res.send({ message: 'Excel exported' })
-
-            // res.json({"message": "Excel realizado correctamente"})
-  
+            res.send({ message: 'Excel exported' }) 
         } 
-        else res.json({"message": "Aún no hay ganadores"})
+        else res.json({"error": "Aún no hay ganadores"})
     } catch (error) {
         console.log(`error es : ${error}`)
     }
