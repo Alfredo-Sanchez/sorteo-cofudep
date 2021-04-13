@@ -20,7 +20,7 @@ router.get('/excelWinners', async (req, res)=>{
             const workSheetColumnNames = [
                 'Orden',
                 'Socio numero',
-                'Nmbre y Apellido',
+                'Nombre y Apellido',
                 'Ganador',
                 'Descripcion'
             ];

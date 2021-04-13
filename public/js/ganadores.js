@@ -5,7 +5,7 @@ const popUp = document.getElementById('popup')
 const popUpText = document.getElementById('popup-text')
 
 
-fetch('http://localhost:4000/getwinners')
+fetch('http://192.168.1.19:4000/getwinners')
 .then(res => {
     if(res.ok){
         return res.json()
@@ -30,7 +30,7 @@ fetch('http://localhost:4000/getwinners')
 
 
 excelExport.addEventListener('click', ()=>{
-    fetch('http://localhost:4000/excelWinners')
+    fetch('http://192.168.1.19:4000/excelWinners')
     .then(res => res.ok ?  res.json() : `error`)
     .then(data =>{
         if(!data.hasOwnProperty('error')){

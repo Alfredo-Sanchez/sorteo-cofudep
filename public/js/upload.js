@@ -29,7 +29,7 @@ dropZone.addEventListener('drop', (e)=>{
 form.addEventListener('submit', (e)=>{
     e.preventDefault()
     if(fileInput.files.length > 0){
-        fetch('http://localhost:4000/uploadfile',{
+        fetch('http://192.168.1.19:4000/uploadfile',{
             method: 'POST', 
             body: JSON.stringify(),
             headers: {
