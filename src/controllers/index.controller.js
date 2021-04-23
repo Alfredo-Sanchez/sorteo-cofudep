@@ -19,17 +19,19 @@ controller.getParticipants = async (req, res)=> {
 }
 
 controller.updateWinner = async (req, res)=>{
+    console.log(req.body)
+    const {winner, awards} =req.body
     try {
-       const winnerValidated = await pool.query('SELECT * FROM participantes WHERE part_orden = $1', [req.params.id])
+       const winnerValidated = await pool.query('SELECT * FROM participantes WHERE part_orden = $1', [req.body.winner])
         // res.send(winnerValidated.rows[0].soc_ganador)
         if(winnerValidated.rows[0].soc_ganador !== "si"){
             try {
                 const response = await pool.query("UPDATE participantes SET soc_ganador = $1, soc_gan_desc = $2 where part_orden = $3",
-                [ 'si', 'Ganador de Gs. 1.000.000', req.params.id])
+                [ 'si', awards, winner])
 
                 if (response.rowCount !== 0){
                     // res.json("competitor updated successfully")
-                    const winner = await pool.query("SELECT * FROM participantes WHERE part_orden = $1", [req.params.id]);
+                    const winner = await pool.query("SELECT * FROM participantes WHERE part_orden = $1", [req.body.winner]);
                     res.send(winner.rows)
                     res.status(200)
                 }else{

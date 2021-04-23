@@ -270,6 +270,13 @@ button {
   font-size: 1.2em;
 }
 
+.modal__input{
+  margin: 10px 0;
+  outline: none;
+  color: #000;
+  font-size: 1.2em;
+}
+
 .modal__submit{
   cursor: pointer;
   outline: none;

@@ -12,7 +12,13 @@ let interval;
 let avaible = false;
 let participants;
 
+//numero aleatorio
+let resp = 0;
+
 //modals
+const modalAwards = document.getElementById('winnerAwards')
+const modalAwardsClose = document.getElementById('modalAdwardsClose')
+
 const modal = document.getElementById('winnerExists')
 const modalText = document.getElementById('modalText')
 const modalClose = document.getElementById('modalClose')
@@ -67,12 +73,13 @@ const renderWinner = (win)=>{
                 
 }
 
-const getWinner = (winner)=>{
-        // console.log(`winner from function getWinner ${winner}`)
+const getWinner = (winnerData)=>{
+        // debugger
+        console.log(`winner from function getWinner ${winnerData.winner}`)
 
-        fetch(`http://localhost:4000/winner/${winner}`, {
+        fetch(`http://localhost:4000/winner/${winnerData.winner}`, {
                 method: 'PUT',
-                body: JSON.stringify(),
+                body: JSON.stringify(winnerData),
                 headers: {
                         "Content-type": "application/json"
                 }
@@ -85,15 +92,36 @@ const getWinner = (winner)=>{
 }
 
 parar.addEventListener('click',()=>{
-       
+        // debugger
         if(avaible){
                 clearInterval(interval)
-                var resp = getRandomInt(2,participants)
+                resp = getRandomInt(2,participants)
                 numeros.textContent = resp;
-                getWinner(resp);
+                modalAwards.classList.add('modal--show')
         }
         avaible = false
 })
+
+modalAwardsClose.addEventListener('click', (e)=>{
+        if(e.target.classList.contains('modal__submit')) {
+            
+                const award = document.getElementById('modalInput').value.trim()
+                if( award !== ""){
+                        const winnerData = {
+                                winner: resp,
+                                awards: award
+                        }
+                        console.log(winnerData)
+                       getWinner(winnerData)
+                       winnerData.winner = 0;
+                       winnerData.awards = ""
+                       console.log(winnerData)
+                        modalAwards.classList.remove('modal--show')
+                }
+        }
+})
+
+
 
 
     
